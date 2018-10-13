@@ -1,3 +1,6 @@
+v2.7 - September 6th, 2015
+o Fixed issue where BBCodes list was completely empty because of mod... (shrug)
+
 v2.6 - August 29th, 2015
 o Fixed missing CSS file operations within package-info.xml
 
