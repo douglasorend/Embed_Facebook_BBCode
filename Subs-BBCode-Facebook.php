@@ -83,13 +83,13 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$data = 'http://' . $data;
 		
 	// Is this a Facebook post URL?
-	if (preg_match('#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i', $data, $parts))
+	if (preg_match('#(http|https):\/\/(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i', $data, $parts))
 	{
 		$width = (empty($width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $width);
 		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . ((int) $width) .'"></div>';
 	}
 	// ---OR--- Is this a Facebook video URL?
-	elseif (preg_match('#(http|https)://(|(.+?).)facebook.com/(.+?/videos/|video.php\?v=)(\d+)(|((/|\?|\&)(.+?)))#i', $data, $parts))
+	elseif (preg_match('#(http|https):\/\/(|(.+?).)facebook.com/(.+?/videos/|video.php\?v=)(\d+)(|((/|\?|\&)(.+?)))#i', $data, $parts))
 	{
 		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
 		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-video" data-allowfullscreen="true" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '"></div>';

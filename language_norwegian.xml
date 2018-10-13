@@ -9,10 +9,10 @@
 	<operation>
 		<search position="end" />
 		<add><![CDATA[
-$txt['fb_default_lang'] = 'Η γλώσσα των ρυθμίσεων του Facebook :';
-$txt['fb_default_video_width'] = 'Προεπιλεγμένο πλάτος του ενσωματωμένου Facebook video:';
-$txt['fb_default_post_width'] = 'Προεπιλεγμένο πλάτος του ενσωματωμένου Facebook post:';
-$txt['fb_invalid'] = '[ Μη έγκυρη διεύθυνση URL Facebook ]';
+$txt['fb_default_lang'] = 'Språket Facebook-kontrollene er vist i:';
+$txt['fb_default_video_width'] = 'Standard bredde av innebygd Facebook-video:';
+$txt['fb_default_post_width'] = 'Standard bredde av innebygd Facebook-innlegg:';
+$txt['fb_invalid'] = '[ Ugyldig Facebook-URL ]';
 ]]></add>
 	</operation>
 </file>
