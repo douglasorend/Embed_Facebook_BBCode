@@ -1,3 +1,6 @@
+v3.0 - February 10th, 2016
+o Fixed issue where Facebook URLs shown in preview mode aren't parsed by Facebook SDK.
+
 v2.22 - January 22th, 2016
 o Added support for Facebook event permalinks.
 

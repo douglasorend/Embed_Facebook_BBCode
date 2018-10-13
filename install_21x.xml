@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>2.22</version>
+<version>3.0</version>
 
 <file name="$sourcedir/Profile-Modify.php">
 	<operation>
@@ -15,6 +15,15 @@
 		<search position="before"><![CDATA[		'ignore_boards',]]></search>
 		<add><![CDATA[
 		'facebook_lang',]]></add>
+	</operation>
+</file>
+<file name="$themedir/Post.template.php">
+	<operation>
+		<search position="after"><![CDATA[}';
+
+	// Code for showing and hiding additional options.]]></search>
+		<add><![CDATA[	FB.XFBML.parse(document.getElementById(\'preview_body\'));
+			]]></add>
 	</operation>
 </file>
 </modification>

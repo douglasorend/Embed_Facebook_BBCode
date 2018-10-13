@@ -32,10 +32,20 @@ function BBCode_Facebook_Theme()
 		(!empty($modSettings['fb_default_lang']) ? $modSettings['fb_default_lang'] : 'en-US'));
 
 	// Add the headers we need for the forum:
-	if (!empty($modSettings['fb_default_lang']))
-		$context['html_headers'] .= '
-	<script src="//connect.facebook.net/' . $user_info['facebook_lang'] . '/sdk.js#xfbml=1&version=v2.3" async></script>';
 	$context['html_headers'] .= '
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init();
+		};
+
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/' . $user_info['facebook_lang'] . '/sdk.js#xfbml=1&version=v2.3";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, "script", "facebook-jssdk"));
+	</script>
 	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Facebook.css" />';
 }
 
