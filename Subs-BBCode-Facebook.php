@@ -113,6 +113,12 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
 		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
 	}
+	// ---OR--- Is this a Facebook event permalink URL?
+	elseif (preg_match('#(http|https):\/\/(|(.+?).)facebook.com/events/(\d+)/permalink/(\d+)#i', $data, $parts))
+	{
+		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
+		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
+	}
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
@@ -204,6 +210,8 @@ function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)(?:&amp;theater)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(http|https):\/\/(|www\.)facebook.com/([\w\.\_]+)/photos/(\w)+\.(\d+)\.(\d+)\.(\d+)/(\d+)/\?type=(\d+)(?:&amp;theater)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(http|https):\/\/(|www\.)facebook.com/events/(\d+)/permalink/(\d+)/?[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
 	$pattern = '~\[facebook\](https?\:\/\/)?(|www\.)\[facebook\](.+?)\[/facebook\]\[/facebook\]~';
 	$message = preg_replace($pattern, '[facebook]$1$2$3[/facebook]', $message);
