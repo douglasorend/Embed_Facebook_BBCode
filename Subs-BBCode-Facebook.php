@@ -215,16 +215,20 @@ function BBCode_Facebook_Profile(&$profile_fields)
 
 function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
+	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$0[/url]' : '[facebook]$0[/facebook]');
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/(?:[\w\.\_]+?/posts/|.+?/videos/|video.php\?v=)(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
-	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)(?:&amp;theater)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
-	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(http|https):\/\/(|www\.)facebook.com/([\w\.\_]+)/photos/(\w)+\.(\d+)\.(\d+)\.(\d+)/(\d+)/\?type=(\d+)(?:&amp;theater)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
-	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(http|https):\/\/(|www\.)facebook.com/events/(\d+)/permalink/(\d+)/?[/\w\-_\~%@\?;=#}\\\\]?~';
-	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~\[facebook\](https?\:\/\/)?(|www\.)\[facebook\](.+?)\[/facebook\]\[/facebook\]~';
-	$message = preg_replace($pattern, '[facebook]$1$2$3[/facebook]', $message);
+	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$1$2$3[/url]' : '[facebook]$1$2$3[/facebook]');
+	$message = preg_replace($pattern, $replace, $message);
+	if (strpos($cache_id, 'sig') !== false)
+		$message = preg_replace('#\[facebook.*\](.*)\[\/facebook\]#i', '[url]$1[/url]', $message);
 }
 
 ?>

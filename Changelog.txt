@@ -1,3 +1,6 @@
+v3.2 - March 7th, 2016
+o Modified auto-embed code so that Facebook URLs in signature are embedded as [b][nobbc][url]{link}[/url][/nobbc][/b].
+
 v3.1 - February 14th, 2016
 o Removed 25 pixel top border from the video iframe div box.
 
