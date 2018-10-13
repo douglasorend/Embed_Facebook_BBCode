@@ -159,7 +159,7 @@ function BBCode_Facebook_Profile(&$profile_fields)
 
 	$profile_fields['facebook_lang'] = array(
 		'type' => 'select',
-		'label' => $txt['facebook_lang'],
+		'label' => $txt['fb_default_lang'],
 		'options' => 'global $context; return $context[\'facebook_lang\'];',
 		'permission' => 'profile_extra',
 		'value' => $user_info['facebook_lang'],
