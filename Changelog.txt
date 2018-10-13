@@ -1,3 +1,9 @@
+v3.4 - September 26th, 2016
+o Altered code to make regular and permalink post URLs responsive.
+o Altered code to make video URLs responsive using Facebook code.
+o Fixed regex pattern to accept [b]photo.php[/b] URLs without the [b]theater[/b] param.
+o Removed [b]BBCode-Facebook2.css[/b] from the mod, since it was unused.
+
 v3.3 - June 18th, 2016
 o Added Spanish Latin translation, courtsey of [url=http://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url].
 o Fixed code so that the Facebook [b]permalink.php[/b] URL is recognized as valid.

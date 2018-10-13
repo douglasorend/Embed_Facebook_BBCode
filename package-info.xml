@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Facebook</id>
 	<name>Embed Facebook BBCode</name>
 	<type>modification</type>
-	<version>3.3</version>
+	<version>3.4</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -18,7 +18,6 @@
 		<modification>language_spanish.xml</modification>
 		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
-		<require-file name="BBCode-Facebook2.css" destination="$themedir/css" />
 		<require-file name="facebook.gif" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
@@ -30,7 +29,6 @@
 		<modification reverse="true">language_spanish.xml</modification>
 		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Facebook.php" />		
-		<remove-file name="$sourcedir/BBCode-Facebook2.css" />
 		<remove-file name="$imagesdir/bbc/facebook.gif" />
 	</uninstall>
 
@@ -45,7 +43,6 @@
 		<modification>language_spanish.xml</modification>
 		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
-		<require-file name="BBCode-Facebook2.css" destination="$themedir/css" />
 		<require-file name="facebook.png" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.1 Beta 1">
@@ -57,7 +54,6 @@
 		<modification reverse="true">language_spanish.xml</modification>
 		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Facebook.php" />		
-		<remove-file name="$sourcedir/BBCode-Facebook2.css" />
 		<remove-file name="$imagesdir/bbc/facebook.png" />
 	</uninstall>
 </package-info>
