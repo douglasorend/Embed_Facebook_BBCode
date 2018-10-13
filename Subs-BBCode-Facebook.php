@@ -46,7 +46,7 @@ function BBCode_Facebook_Theme()
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, "script", "facebook-jssdk"));
 	</script>
-	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Facebook.css" />';
+	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Facebook2.css" />';
 }
 
 function BBCode_Facebook(&$bbc)

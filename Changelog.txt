@@ -1,3 +1,6 @@
+v3.1 - February 14th, 2016
+o Removed 25 pixel top border from the video iframe div box.
+
 v3.0 - February 10th, 2016
 o Fixed issue where Facebook URLs shown in preview mode aren't parsed by Facebook SDK.
 

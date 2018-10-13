@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Facebook</id>
 	<name>Embed Facebook BBCode</name>
 	<type>modification</type>
-	<version>3.0</version>
+	<version>3.1</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -17,7 +17,7 @@
 		<modification>language_norwegian.xml</modification>
 		<modification>language_spanish.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
-		<require-file name="BBCode-Facebook.css" destination="$themedir/css" />
+		<require-file name="BBCode-Facebook2.css" destination="$themedir/css" />
 		<require-file name="facebook.gif" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
@@ -28,7 +28,7 @@
 		<modification reverse="true">language_norwegian.xml</modification>
 		<modification reverse="true">language_spanish.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Facebook.php" />		
-		<remove-file name="$sourcedir/BBCode-Facebook.css" />
+		<remove-file name="$sourcedir/BBCode-Facebook2.css" />
 		<remove-file name="$imagesdir/bbc/facebook.gif" />
 	</uninstall>
 
@@ -42,7 +42,7 @@
 		<modification>language_norwegian.xml</modification>
 		<modification>language_spanish.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
-		<require-file name="BBCode-Facebook.css" destination="$themedir/css" />
+		<require-file name="BBCode-Facebook2.css" destination="$themedir/css" />
 		<require-file name="facebook.png" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.1 Beta 1">
@@ -53,7 +53,7 @@
 		<modification reverse="true">language_norwegian.xml</modification>
 		<modification reverse="true">language_spanish.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Facebook.php" />		
-		<remove-file name="$sourcedir/BBCode-Facebook.css" />
+		<remove-file name="$sourcedir/BBCode-Facebook2.css" />
 		<remove-file name="$imagesdir/bbc/facebook.png" />
 	</uninstall>
 </package-info>
