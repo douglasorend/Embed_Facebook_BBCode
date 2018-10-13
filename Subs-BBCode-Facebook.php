@@ -104,19 +104,19 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 	$pst_width = (empty($def_width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $def_width);
 
 	// Is this a Facebook post URL?
-	if (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\w\.\_]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
+	if (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\d\w\.\_\-]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
 		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($pst_width) ? $pst_width : 'auto') . '"></div>';
 	// ---OR--- Is this a regular Facebook permalink URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/permalink.php\?(story_fbid=(\d+))?(&amp;)?(id=(\d+))?#i', $data, $parts))
 		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($vid_width) ? $vid_width : 'auto') . ' data-allowfullscreen="true"></div>';
 	// ---OR--- Is this a Facebook video URL?
-	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\w\.\_]+/videos/|video.php\?v=)(\d+)#i', $data, $parts))
+	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_\-]+/videos/|video.php\?v=)(\d+)#i', $data, $parts))
 		$tag['content'] = '<div class="fb-video" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '" data-width="' . (!empty($vid_width) ? $vid_width : 'auto') . '" data-allowfullscreen="true"></div>';
 	// ---OR--- Is this a Facebook photo URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)#i', $data, $parts))
 		$tag['content'] = '<div' . (!empty($vid_width) ? ' width="' . $vid_width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
 	// ---OR--- Is this a Facebook photo URL?
-	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_]+)/photos/(\w)+\.(\d+)(?:\.(\d+)\.(\d+))?/(\d+)/\?type=(\d+)(?:&amp;theater)?#i', $data, $parts))
+	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_\-]+)/photos/(\w)+\.(\d+)(?:\.(\d+)\.(\d+))?/(\d+)/\?type=(\d+)(?:&amp;theater)?#i', $data, $parts))
 		$tag['content'] = '<div' . (!empty($vid_width) ? ' width="' . $vid_width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
 	// ---OR--- Is this a Facebook event permalink URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/events/(\d+)/permalink/(\d+)#i', $data, $parts))
@@ -219,13 +219,13 @@ function BBCode_Facebook_Profile(&$profile_fields)
 function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
 	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$0[/url]' : '[facebook]$0[/facebook]');
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/(?:[\w\.\_]+?/posts/|.+?/videos/|video.php\?v=)(\d+)(?:(&amp;|\?)(.+?=([\w\d\{\}\%])+)+?)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/(?:[\d\w\.\_\-]+?/posts/|.+?/videos/|video.php\?v=)(\d+)(?:(&amp;|\?)(.+?=([\w\d\{\}\%])+)+?)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)(?:&amp;theater)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/permalink.php\?(story_fbid=(\d+))?(&amp;)?(id=(\d+))?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_]+)/photos/(\w)+\.(\d+)(?:\.(\d+)\.(\d+))?/(\d+)/\?type=(\d+)(?:&amp;theater)?\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_\-]+)/photos/(\w)+\.(\d+)(?:\.(\d+)\.(\d+))?/(\d+)/\?type=(\d+)(?:&amp;theater)?\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?):\/\/(|www\.)facebook.com/events/(\d+)/permalink/(\d+)/?[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);

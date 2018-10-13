@@ -1,3 +1,6 @@
+v3.8 - January 11th, 2018
+o Modified regex patterns to include dashes in Facebook user names.
+
 v3.7 - November 29th, 2017
 o Revised Tapatalk support to return Facebook URL only if we can match a pattern.
 o Streamlined some code in the bbcode validation function.
