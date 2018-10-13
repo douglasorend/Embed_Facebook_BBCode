@@ -1,3 +1,6 @@
+v2.16 - December 9th, 2015
+o Fixed the auto-embed so that "facebook.com/blah/posts/1234" gets embedded again.
+
 v2.15 - December 9th, 2015
 o Fixed name of CSS file within Subs-BBCode-Facebook.php.
 

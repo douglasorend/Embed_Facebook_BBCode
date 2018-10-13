@@ -182,7 +182,7 @@ function BBCode_Facebook_Profile(&$profile_fields)
 
 function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(?:https?\:\/\/)?(?:www\.)?facebook.com\/(?:.+?/posts|.+?/videos/|videos.php\?v=)?(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(?:https?\:\/\/)?(?:www\.)?facebook.com\/(?:.+?/posts/|.+?/videos/|videos.php\?v=)(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
 }
 
