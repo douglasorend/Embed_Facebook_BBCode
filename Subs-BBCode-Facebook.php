@@ -69,8 +69,8 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$temp = $modSettings['fb_default_lang'];
 		unset($modSettings['fb_default_lang']);
 		updateSettings(array('fb_default_lang' => $temp));
-		$lang = $modSettings['fb_default_lang'];
 	}
+	$lang = $modSettings['fb_default_lang'];
 	$tag['content'] = (empty($already_included) ? '<script src="//connect.facebook.net/' . $lang . '/sdk.js#xfbml=1&version=v2.2" async></script>' : '') . 
 		'<div class="fb-post" data-href="$1" data-width="' . $width . '"></div>';
 	$already_included = true;
@@ -86,17 +86,11 @@ function BBCode_Facebook_Settings(&$config_vars)
 		$search_results = fetch_web_data('http://www.facebook.com/translations/FacebookLocales.xml');
 		$pattern = '~<\?xml version=(.+?)>*(<locales>.+?</locales>)~is';
 		if (!$search_results || preg_match($pattern, $search_results, $matches) != true)
-		{
-			$config_vars[] = array('text', 'fb_default_lang');
-			return;
-		}
+			return BBCode_Facebook_Default_Settings($config_vars);
 		loadClassFile('Class-Package.php');
 		$results = new xmlArray($search_results, false);
 		if (!$results->exists('locales'))
-		{
-			$config_vars[] = array('text', 'fb_default_lang');
-			return;
-		}
+			return BBCode_Facebook_Default_Settings($config_vars);
 		$results = $results->path('locales[0]');
 		$langs = array();
 		foreach ($results->set('locale') as $locale)
@@ -114,9 +108,19 @@ function BBCode_Facebook_Settings(&$config_vars)
 		}
 		cache_put_data('fb_langs', $langs, 3600);
 	}
+	if (empty($langs))
+		return BBCode_Facebook_Default_Settings($config_vars);
+	if (empty($modSettings['fb_default_lang']))
+		$modSettings['fb_default_lang'] = (isset($langs[$txt['lang_locale']]) ? $txt['lang_locale'] : 'en_US');
+	$config_vars[] = array('select', 'fb_default_lang', $langs);
+}
+
+function BBCode_Facebook_Default_Settings(&$config_vars)
+{
+	global $modSettings;
 	if (empty($modSettings['fb_default_lang']))
 		$modSettings['fb_default_lang'] = 'en_US';
-	$config_vars[] = array('select', 'fb_default_lang', $langs);
+	$config_vars[] = array('text', 'fb_default_lang');
 }
 
 ?>

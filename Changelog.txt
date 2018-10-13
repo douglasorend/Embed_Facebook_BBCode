@@ -1,0 +1,12 @@
+v1.0.2 - July 11th, 2015
+o Fixed issue with variable not being set within BBCode_Facebook_Validate function.
+o Added code to try to select the forum's language as the FB default language.
+
+v1.0.1 - July 9th, 2015
+o Fixed an issue with setting the width parameter
+o Added code to trim extra spaces from the given URL and make sure it starts with "http://" or "https://"
+o Added code to select the default language used within Facebook posts.
+o Added option within Admin -> Modification Settings to set default language used within Facebook posts.
+
+v1.0 - June 26th, 2015
+o Initial Release
