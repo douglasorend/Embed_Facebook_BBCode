@@ -105,6 +105,8 @@ function BBCode_Facebook_Embed(&$message)
 	$message = preg_replace($pattern, '[facebook]$1://$2facebook.com/$4$5$6[/facebook]', $message);
 	$pattern = '#\[facebook(|.+?)\]\[facebook\](.+?)\[/facebook\]\[/facebook\]#i';
 	$message = preg_replace($pattern, '[facebook$1]$2[/facebook]', $message);
+	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
+	$message = preg_replace($pattern, '[code$1]$3$5$6[/code]', $message);
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
