@@ -1,3 +1,7 @@
+v1.1 - August 8th, 2015
+o Added Greek UTF8 language string modification to the mod.
+o Added additional validation to make sure the bbcode isn't abused.
+
 v1.0.2 - July 11th, 2015
 o Fixed issue with variable not being set within BBCode_Facebook_Validate function.
 o Added code to try to select the forum's language as the FB default language.

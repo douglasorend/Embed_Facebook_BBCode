@@ -54,10 +54,13 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 	static $already_included = false;
 
 	if (empty($data))
-		return;
+		return ($tag['content'] = '');
 	$data = strtr(trim($data), array('<br />' => ''));
 	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 		$data = 'http://' . $data;
+	$pattern = '#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i';
+	if (!preg_match($pattern, $data, $parts))
+		return ($tag['content'] = '');
 	list($lang, $width) = explode('|', $tag['content']);
 	$width = (empty($width) ? 500 : $width);
 	$lang = (empty($lang) ? false : $lang);
