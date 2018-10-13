@@ -1,18 +1,18 @@
 [hr]
-[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v2.1[/b][/size][/color]
+[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v2.2[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4062]Link to Mod[/url]
 [/center]
 [hr]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This modification adds a BBCode to embed Facebook posts into your forum.  Embedded Posts are a simple way to put public posts - by a Page or a person on Facebook - into the content of your web site or web page. Only public posts from Facebook Pages and profiles can be embedded.
+This modification adds a BBCode to embed Facebook posts and videos into your forum.  Embedding posts and videos are simple way to put public posts and videos - by a Page or a person on Facebook - into the content of your web site or web page.  Only public posts from Facebook Pages and profiles can be embedded.
 
 The BBCode takes these forms:
 [code]
 [facebook]{facebook URL}[/facebook]
 [facebook width={x}]{facebook URL}[/facebook]
 [/code]
-where [b]{facebook URL}[/b] is the URL to the facebook post that you want to display and [b]{x}[/b] is the width of the post desired.
+where [b]{facebook URL}[/b] is the URL to the facebook post or video that you want to display and [b]{x}[/b] is the width of the post desired.  Note that if the width isn't specified, the global setting will be applied.
 
 [color=blue][b][size=12pt][u]User Profile Settings[/u][/size][/b][/color]
 Under [b]Profile[/b] => [b]Look and Layout[/b], there is a new option called [b]Language the Facebook controls are shown in[/b].  It's purpose is set the language of the Facebook controls used in each post that the user can see, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!
@@ -24,7 +24,7 @@ Under [b]Admin[/b] => [b]Modification Settings[/b], there is a new option called
 o [url=https://developers.facebook.com/docs/plugins/embedded-posts]Facebook Embedded Posts[/url], specifically [b]Getting a posts's URL[/b]
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.10, but should work on SMF 2.1 Beta 1, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
+This mod was tested on SMF 2.0.10, but should work on SMF 2.1 Beta 2, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=557.msg843#msg843]XPtsp.com[/url].

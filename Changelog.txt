@@ -1,3 +1,6 @@
+v2.2 - August 23rd, 2015
+o Correction of which language file to insert new strings into....
+
 v2.1 - August 18th, 2015
 o Added support for responsive Facebook videos to the mod.
 o Added option to control the default width of the post when it is not specified.
