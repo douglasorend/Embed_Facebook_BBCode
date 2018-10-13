@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]FACEBOOK BBCODE v1.0[/b][/size][/color]
+[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v1.0.1[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4062]Link to Mod[/url]
 [/center]
 [hr]
@@ -10,12 +10,14 @@ This modification adds a BBCode to view Facebook posts.
 The BBCode takes these forms:
 [code]
 [facebook]{facebook URL}[/facebook]
-[facebook width=x]{facebook URL}[/facebook]
+[facebook width={x}]{facebook URL}[/facebook]
+[facebook lang={lang}]{facebook URL}[/facebook]
+[facebook width={x} lang={lang}]{facebook URL}[/facebook]
 [/code]
-where [b]{facebook URL}[/b] is the URL to the facebook post that you want to display.
+where [b]{facebook URL}[/b] is the URL to the facebook post that you want to display, [b]{x}[/b] is the width of the post desired, and [b]{lang}[/b] is the language code that is requested.
 
 [color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
-There are no admin settings to this mod.  To disable, you must uninstall this mod.
+Under [b]Admin[/b] => [b]Modification Settings[/b], there is a new option called [b]Facebook Default Language[/b].  It's purpose is to define the forum's default language for the Facebook post, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!
 
 [color=blue][b][size=12pt][u]Further Information[/u][/size][/b][/color]
 o [url=https://developers.facebook.com/docs/plugins/embedded-posts]Facebook Embedded Posts[/url], specifically [b]Getting a posts's URL[/b]
