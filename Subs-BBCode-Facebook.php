@@ -180,12 +180,10 @@ function BBCode_Facebook_Profile(&$profile_fields)
 	);
 }
 
-function BBCode_Facebook_Embed(&$message)
+function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(?:https?\:\/\/)?(?:www\.)?facebook.com\/(?:.+?/posts|.+?/videos/|videos.php\?v=)?(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
-	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
-	$message = preg_replace($pattern, '[code$1]$3$5$6[/code]', $message);
 }
 
 ?>

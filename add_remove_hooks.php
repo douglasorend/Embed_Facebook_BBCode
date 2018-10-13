@@ -27,6 +27,7 @@ $hook_functions = array(
 	'integrate_general_mod_settings' => 'BBCode_Facebook_Settings',
 // SMF 2.1+ Hooks below this line:
 	'integrate_load_profile_fields' => 'BBCode_Facebook_Profile',
+	'integrate_pre_parsebbc' => 'BBCode_Facebook_Embed',
 );
 
 // Adding or removing them?
