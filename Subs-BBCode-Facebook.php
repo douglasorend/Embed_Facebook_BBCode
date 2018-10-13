@@ -14,7 +14,7 @@ if (!defined('SMF'))
 
 function BBCode_Facebook_Theme()
 {
-	global $context, $user_info, $modSettings, $sourcedir;
+	global $context, $user_info, $modSettings, $sourcedir, $settings;
 	
 	$lang = (!empty($user_info['facebook_lang']) ? $user_info['facebook_lang'] : 
 		(isset($modSettings['fb_default_lang']) ? $modSettings['fb_default_lang'] : false));
@@ -29,7 +29,9 @@ function BBCode_Facebook_Theme()
 	}
 	if (!empty($lang))
 		$context['html_headers'] .= '
-	<script src="//connect.facebook.net/' . $lang . '/sdk.js#xfbml=1&version=v2.2" async></script>';
+	<script src="//connect.facebook.net/' . $lang . '/sdk.js#xfbml=1&version=v2.3" async></script>';
+	$context['html_headers'] .= '
+	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-NHL.css" />';
 }
 
 function BBCode_Facebook(&$bbc)
@@ -42,7 +44,7 @@ function BBCode_Facebook(&$bbc)
 			'width' => array('match' => '(\d+)'),
 			'lang' => array('optional' => true),
 		),
-		'content' => '<div class="fb-post" data-href="$1" data-width="{width}"></div>',
+		'content' => '{width}',
 		'validate' => 'BBCode_Facebook_Validate',
 		'disabled_content' => '$1',
 	);
@@ -51,7 +53,7 @@ function BBCode_Facebook(&$bbc)
 	$bbc[] = array(
 		'tag' => 'facebook',
 		'type' => 'unparsed_content',
-		'content' => '<div class="fb-post" data-href="$1" data-width="500"></div>',
+		'content' => '0',
 		'validate' => 'BBCode_Facebook_Validate',
 		'disabled_content' => '',
 	);
@@ -70,55 +72,80 @@ function BBCode_Facebook_Button(&$buttons)
 
 function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 {
+	global $modSettings;
+	
+	$width = (int) $tag['content'];
+	$tag['content'] = '';
 	if (empty($data))
-		return ($tag['content'] = '');
+		return;
 	$data = strtr(trim($data), array('<br />' => ''));
 	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 		$data = 'http://' . $data;
-	if (!preg_match('#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i', $data, $parts))
-		return ($tag['content'] = '');
+		
+	// Is this a Facebook post URL?
+	if (preg_match('#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i', $data, $parts))
+	{
+		$width = (empty($width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $width);
+		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . ((int) $width) .'"></div>';
+	}
+	// ---OR--- Is this a Facebook video URL?
+	elseif (preg_match('#(http|https)://(|(.+?).)facebook.com/(.+?/videos/|video.php\?v=)(\d+)(|((/|\?|\&)(.+?)))#i', $data, $parts))
+	{
+		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
+		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-video" data-allowfullscreen="true" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '"></div>';
+	}
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
 {
-	global $sourcedir, $txt, $modSettings, $context;
+	global $txt, $modSettings;
 
 	if (($langs = cache_get_data('fb_langs', 3600)) == null)
-	{
-		require_once($sourcedir . '/Subs-Package.php');
-		$search_results = fetch_web_data('http://www.facebook.com/translations/FacebookLocales.xml');
-		$pattern = '~<\?xml version=(.+?)>*(<locales>.+?</locales>)~is';
-		if (!$search_results || preg_match($pattern, $search_results, $matches) != true)
-			return BBCode_Facebook_Default_Settings($config_vars);
-		loadClassFile('Class-Package.php');
-		$results = new xmlArray($search_results, false);
-		if (!$results->exists('locales'))
-			return BBCode_Facebook_Default_Settings($config_vars);
-		$results = $results->path('locales[0]');
-		$langs = array();
-		foreach ($results->set('locale') as $locale)
-		{
-			if (!$locale->exists('codes'))
-				continue;
-			$code = $locale->path('codes[0]');
-			if (!$code->exists('code'))
-				continue;
-			$code = $code->path('code[0]');
-			if (!$code->exists('standard'))
-				continue;
-			$code = $code->path('standard[0]');
-			$langs[ $code->fetch('representation') ] = $locale->fetch('englishName');
-		}
-		cache_put_data('fb_langs', ($context['facebook_lang'] = $langs), 3600);
-	}
+		BBCode_Facebook_Get_Languages($langs, $config_vars);
 	if (empty($langs))
-		return BBCode_Facebook_Default_Settings($config_vars);
-	if (empty($modSettings['fb_default_lang']))
-		$modSettings['fb_default_lang'] = (isset($langs[$txt['lang_locale']]) ? $txt['lang_locale'] : 'en_US');
-	$config_vars[] = array('select', 'fb_default_lang', $langs);
+		BBCode_Facebook_No_List($config_vars);
+	else
+	{
+		if (empty($modSettings['fb_default_lang']))
+			$modSettings['fb_default_lang'] = (isset($langs[$txt['lang_locale']]) ? $txt['lang_locale'] : 'en_US');
+		$config_vars[] = array('select', 'fb_default_lang', $langs);
+	}
+	$config_vars[] = array('int', 'fb_default_post_width');
+	$config_vars[] = array('int', 'fb_default_video_width');
 }
 
-function BBCode_Facebook_Default_Settings(&$config_vars)
+function BBCode_Facebook_Get_Languages(&$langs, &$config_vars)
+{
+	global $sourcedir, $context;
+
+	$langs = array();
+	require_once($sourcedir . '/Subs-Package.php');
+	$search_results = fetch_web_data('http://www.facebook.com/translations/FacebookLocales.xml');
+	$pattern = '~<\?xml version=(.+?)>*(<locales>.+?</locales>)~is';
+	if (!$search_results || preg_match($pattern, $search_results, $matches) != true)
+		return BBCode_Facebook_No_List($config_vars);
+	loadClassFile('Class-Package.php');
+	$results = new xmlArray($search_results, false);
+	if (!$results->exists('locales'))
+		return BBCode_Facebook_No_List($config_vars);
+	$results = $results->path('locales[0]');
+	foreach ($results->set('locale') as $locale)
+	{
+		if (!$locale->exists('codes'))
+			continue;
+		$code = $locale->path('codes[0]');
+		if (!$code->exists('code'))
+			continue;
+		$code = $code->path('code[0]');
+		if (!$code->exists('standard'))
+			continue;
+		$code = $code->path('standard[0]');
+		$langs[ $code->fetch('representation') ] = $locale->fetch('englishName');
+	}
+	cache_put_data('fb_langs', ($context['facebook_lang'] = $langs), 3600);
+}
+
+function BBCode_Facebook_No_List(&$config_vars)
 {
 	global $modSettings;
 	if (empty($modSettings['fb_default_lang']))

@@ -1,3 +1,10 @@
+v2.1 - August 18th, 2015
+o Added support for responsive Facebook videos to the mod.
+o Added option to control the default width of the post when it is not specified.
+o Added option to control the default width of the video when it is not specified.
+o Updated Greek UTF8 language modifications, due to several new strings to support new options.
+o Moved text for mod options from "index" to "ManageSettings" language file.
+
 v2.0 - August 14th, 2015
 o Added user setting under [b]Profile[/b] => [b]Look and Layout[/b] to override global forum setting.
 o BBCode "lang" parameter is now completely ignored, as user and forum settings are now used instead.

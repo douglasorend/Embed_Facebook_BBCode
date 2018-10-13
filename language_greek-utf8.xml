@@ -5,13 +5,13 @@
 <name>Embed Facebook BBCode</name>
 <version>2.1</version>
 
-<file name="$languagedir/ManageSettings.english.php">
+<file name="$languagedir/ManageSettings.greek-utf8.php" error="skip">
 	<operation>
 		<search position="end" />
 		<add><![CDATA[
-$txt['fb_default_lang'] = 'Language the Facebook controls are shown in:';
-$txt['fb_default_video_width'] = 'Default width of embedded Facebook video:';
-$txt['fb_default_post_width'] = 'Default width of embedded Facebook post:';
+$txt['fb_default_lang'] = 'Η γλώσσα των ρυθμίσεων του Facebook :';
+$txt['fb_default_video_width'] = 'Προεπιλεγμένο πλάτος του ενσωματωμένου Facebook video:';
+$txt['fb_default_post_width'] = 'Προεπιλεγμένο πλάτος του ενσωματωμένου Facebook post:';
 ]]></add>
 	</operation>
 </file>
