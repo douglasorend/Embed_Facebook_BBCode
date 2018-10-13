@@ -31,7 +31,7 @@ function BBCode_Facebook_Theme()
 		$context['html_headers'] .= '
 	<script src="//connect.facebook.net/' . $lang . '/sdk.js#xfbml=1&version=v2.3" async></script>';
 	$context['html_headers'] .= '
-	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-NHL.css" />';
+	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Facebook.css" />';
 }
 
 function BBCode_Facebook(&$bbc)
