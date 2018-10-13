@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>2.3</version>
+<version>2.4</version>
 
 <file name="$sourcedir/Load.php">
 	<operation>
@@ -29,6 +29,15 @@
 		<search position="before"><![CDATA[		'ignore_boards',]]></search>
 		<add><![CDATA[
 		'facebook_lang',]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/Subs.php">
+	<operation>
+		<search position="after"><![CDATA[// Sift out the bbc for a performance improvement.]]></search>
+		<add><![CDATA[// Embed Facebook URLs in the facebook bbcode tags:
+	BBCode_Facebook_Embed($message);
+
+	]]></add>
 	</operation>
 </file>
 </modification>

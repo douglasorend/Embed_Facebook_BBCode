@@ -96,6 +96,15 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 	}
 }
 
+
+function BBCode_Facebook_Embed(&$message)
+{
+	$pattern = '#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i';
+	$message = preg_replace($pattern, '[facebook]$1://$2facebook.com/$4/posts/$5$6[/facebook]', $message);
+	$pattern = '#(http|https)://(|(.+?).)facebook.com/(.+?/videos/|video.php\?v=)(\d+)(|((/|\?|\&)(.+?)))#i';
+	$message = preg_replace($pattern, '[facebook]$1://$2facebook.com/$4$5$6[/facebook]', $message);
+}
+
 function BBCode_Facebook_Settings(&$config_vars)
 {
 	global $txt, $modSettings;
