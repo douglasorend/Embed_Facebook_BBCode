@@ -1,3 +1,6 @@
+v3.5 - November 22th, 2017
+o Altered regex patterns to accept [b]/photo/[/b] URLs properly.
+
 v3.4 - September 26th, 2016
 o Altered code to make regular and permalink post URLs responsive.
 o Altered code to make video URLs responsive using Facebook code.
