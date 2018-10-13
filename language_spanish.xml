@@ -5,14 +5,14 @@
 <name>Embed Facebook BBCode</name>
 <version>2.19</version>
 
-<file name="$languagedir/index.english.php">
+<file name="$languagedir/index.spanish.php">
 	<operation>
 		<search position="end" />
 		<add><![CDATA[
-$txt['fb_default_lang'] = 'Language the Facebook controls are shown in:';
-$txt['fb_default_video_width'] = 'Default width of embedded Facebook video:';
-$txt['fb_default_post_width'] = 'Default width of embedded Facebook post:';
-$txt['fb_invalid'] = '[ Invalid Facebook URL ]';
+$txt['fb_default_lang'] = 'El idioma de los controles de Facebook se muestran en:';
+$txt['fb_default_video_width'] = 'Anchura por defecto de los vídeos adjuntos de Facebook:';
+$txt['fb_default_post_width'] = 'Anchura por defecto de las publicaciones adjuntas de Facebook:';
+$txt['fb_invalid'] = '[ URL Inválida de Facebook ]';
 ]]></add>
 	</operation>
 </file>

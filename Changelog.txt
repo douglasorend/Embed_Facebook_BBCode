@@ -1,3 +1,6 @@
+v2.19 - December 28th, 2015
+o Added Spanish translation to the mod, courtsey of [url=http://www.simplemachines.org/community/index.php?action=profile;u=422971]d3vcho[/url]
+
 v2.18 - December 21th, 2015
 o Added support for Facebook photos as posts
 o Added auto-embed support for Facebook photo posts
