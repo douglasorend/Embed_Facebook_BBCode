@@ -1,3 +1,10 @@
+v2.21 - December 30th, 2015
+o Fixed issue where Facebook language set to default Facebook language, not user's language.
+o Fixed photo URLs so that URLs with "&theater" in them display properly.
+o Fixed auto-embed for Facebook videos.
+o Fixed code for Facebook usernames with decimal points or underscores in them.
+o Added new Facebook photo post format recognition.
+
 v2.20 - December 29th, 2015
 o Fixed Spanish XML file so that it doesn't result in errors when Spanish isn't installed.
 o Moved code from XML file into the PHP file to set the user's default facebook language.
