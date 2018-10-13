@@ -1,3 +1,6 @@
+v3.9 - March 4th, 2018
+o Fixed an issue that prevents BBC manager from showing bbcodes.
+
 v3.8 - January 11th, 2018
 o Modified regex patterns to include dashes in Facebook user names.
 

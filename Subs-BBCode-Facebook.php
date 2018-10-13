@@ -218,6 +218,8 @@ function BBCode_Facebook_Profile(&$profile_fields)
 
 function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
+	if ($message === false)
+		return;
 	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$0[/url]' : '[facebook]$0[/facebook]');
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/(?:[\d\w\.\_\-]+?/posts/|.+?/videos/|video.php\?v=)(\d+)(?:(&amp;|\?)(.+?=([\w\d\{\}\%])+)+?)?+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
