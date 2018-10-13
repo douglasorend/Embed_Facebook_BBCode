@@ -1,3 +1,6 @@
+v2.12 - November 12th, 2015
+o Issue already been addressed.  No functional changes made to the mod.
+
 v2.11 - November 7th, 2015
 o Fixed Norwegian language modifications so that they are added to correct language file.
 

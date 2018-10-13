@@ -98,6 +98,8 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 
 function BBCode_Facebook_Embed(&$message)
 {
+	if ($message === false)
+		return;
 	$pattern = '#(|\[facebook(|.+?)\](([<br />]+)?))(http|https):\/\/(|.+?)\.facebook\.com/(.+?/posts/|.+?/videos/|video.php\?v=)(\d+)(|((/|\?)(.+?)))(([<br />]+)?)(\[/facebook\]|)#i';
 	$message = preg_replace($pattern, '[facebook$2]$5://$6.facebook.com/$7$8$9$11[/facebook]$13', $message);
 	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
