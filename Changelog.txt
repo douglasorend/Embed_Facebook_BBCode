@@ -1,3 +1,6 @@
+v2.13 - November 14th, 2015
+o Fixed auto-embedding code so that it embeds the URL if no tags are around it.
+
 v2.12 - November 12th, 2015
 o Issue already been addressed.  No functional changes made to the mod.
 

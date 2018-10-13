@@ -36,6 +36,8 @@ function BBCode_Facebook_Theme()
 
 function BBCode_Facebook(&$bbc)
 {
+	global $modSettings;
+
 	// Format: [facebook width=x]{facebook URL}[/facebook]
 	$bbc[] = array(
 		'tag' => 'facebook',
@@ -94,16 +96,6 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
 		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-video" data-allowfullscreen="true" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '"></div>';
 	}
-}
-
-function BBCode_Facebook_Embed(&$message)
-{
-	if ($message === false)
-		return;
-	$pattern = '#(|\[facebook(|.+?)\](([<br />]+)?))(http|https):\/\/(|.+?)\.facebook\.com/(.+?/posts/|.+?/videos/|video.php\?v=)(\d+)(|((/|\?)(.+?)))(([<br />]+)?)(\[/facebook\]|)#i';
-	$message = preg_replace($pattern, '[facebook$2]$5://$6.facebook.com/$7$8$9$11[/facebook]$13', $message);
-	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
-	$message = preg_replace($pattern, '[code$1]$3$5$6[/code]', $message);
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
@@ -186,6 +178,14 @@ function BBCode_Facebook_Profile(&$profile_fields)
 			return is_array($context[\'facebook_lang\']);
 		'),
 	);
+}
+
+function BBCode_Facebook_Embed(&$message)
+{
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(?:https?\:\/\/)?(?:www\.)?facebook.com\/(?:.+?/posts|.+?/videos/|videos.php\?v=)?(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
+	$message = preg_replace($pattern, '[code$1]$3$5$6[/code]', $message);
 }
 
 ?>
