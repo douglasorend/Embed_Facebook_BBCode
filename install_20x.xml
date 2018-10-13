@@ -3,22 +3,8 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>2.19</version>
+<version>2.20</version>
 
-<file name="$sourcedir/Load.php">
-	<operation>
-		<search position="before"><![CDATA[global $cookiename, $user_info, $language]]></search>
-		<add><![CDATA[, $txt]]></add>
-	</operation>
-	<operation>
-		<search position="after"><![CDATA[// Just build this here, it makes it easier to change/use - administrators can see all boards.]]></search>
-		<add><![CDATA[// FACEBOOK BBCODE: Include the language setting in the $userinfo array....
-	loadLanguage('index');
-	$user_info['facebook_lang'] = (isset($user_settings['facebook_lang']) ? $user_settings['facebook_lang'] : false);
-
-	]]></add>
-	</operation>
-</file>
 <file name="$sourcedir/Post.php">
 	<operation>
 		<search position="replace"><![CDATA['<img>]]></search>

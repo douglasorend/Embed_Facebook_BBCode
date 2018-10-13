@@ -16,9 +16,8 @@ function BBCode_Facebook_Theme()
 {
 	global $context, $user_info, $modSettings, $sourcedir, $settings;
 	
-	$lang = (!empty($user_info['facebook_lang']) ? $user_info['facebook_lang'] : 
-		(isset($modSettings['fb_default_lang']) ? $modSettings['fb_default_lang'] : false));
-	if (empty($lang))
+	// Make sure that we have a default language specified in the $modSettings array:
+	if (empty($modSettings['fb_default_lang']))
 	{
 		$dummy_vars = array();
 		BBCode_Facebook_Settings($dummy_vars);
@@ -27,9 +26,15 @@ function BBCode_Facebook_Theme()
 		unset($modSettings['fb_default_lang']);
 		updateSettings(array('fb_default_lang' => $lang));
 	}
-	if (!empty($lang))
+
+	// Make sure that the user's facebook lang is set to default language if none specified:
+	$user_info['facebook_lang'] = (!empty($user_info['facebook_lang']) ? $user_info['facebook_lang'] : 
+		(!empty($modSettings['fb_default_lang']) ? $modSettings['fb_default_lang'] : 'en-US'));
+
+	// Add the headers we need for the forum:
+	if (!empty($modSettings['fb_default_lang']))
 		$context['html_headers'] .= '
-	<script src="//connect.facebook.net/' . $lang . '/sdk.js#xfbml=1&version=v2.3" async></script>';
+	<script src="//connect.facebook.net/' . $modSettings['fb_default_lang'] . '/sdk.js#xfbml=1&version=v2.3" async></script>';
 	$context['html_headers'] .= '
 	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Facebook.css" />';
 }
