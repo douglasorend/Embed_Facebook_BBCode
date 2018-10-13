@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>3.5</version>
+<version>3.6</version>
 
 <file name="$languagedir/index.spanish.php" error="skip">
 	<operation>
@@ -12,6 +12,7 @@
 $txt['fb_default_lang'] = 'El idioma de los controles de Facebook se muestran en:';
 $txt['fb_default_video_width'] = 'Anchura por defecto de los vídeos adjuntos de Facebook:';
 $txt['fb_default_post_width'] = 'Anchura por defecto de las publicaciones adjuntas de Facebook:';
+$txt['fb_include_link'] = 'Incluye el enlace de Facebook debajo?';
 $txt['fb_invalid'] = '[ URL Inválida de Facebook ]';
 ]]></add>
 	</operation>

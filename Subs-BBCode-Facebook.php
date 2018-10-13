@@ -99,8 +99,11 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 		$data = 'http://' . $data;
 		
+	// Avoid this whole section if we are running from the Tapatalk mod:
+	if (defined('IN_MOBIQUO'))
+		$tag['content'] = '<a href="' . $data . '">' . $data . '</a>';
 	// Is this a Facebook post URL?
-	if (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\w\.\_]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
+	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\w\.\_]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
 	{
 		$width = (empty($width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $width);
 		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($width) ? $width : 'auto') . '"></div>';
@@ -135,6 +138,10 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
 		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($width) ? $width : 'auto') . '"></div>';
 	}
+
+	// Include the Facebook link if we are running the Tapatalk mod or user demands it:
+	if (!defined('IN_MOBIQUO') && !empty($modSettings['fb_include_link']))
+		$tag['content'] .= '<br /><a href="' . $data . '">' . $data . '</a>';
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
@@ -153,6 +160,7 @@ function BBCode_Facebook_Settings(&$config_vars)
 	}
 	$config_vars[] = array('int', 'fb_default_post_width');
 	$config_vars[] = array('int', 'fb_default_video_width');
+	$config_vars[] = array('check', 'fb_include_link');
 }
 
 function BBCode_Facebook_Get_Languages(&$langs, &$config_vars)

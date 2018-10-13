@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v3.5[/b][/size][/color]
+[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v3.6[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4062]Link to Mod[/url]
 [/center]
 [hr]
@@ -18,7 +18,11 @@ where [b]{facebook URL}[/b] is the URL to the facebook photo post, post or video
 Under [b]Profile[/b] => [b]Look and Layout[/b], there is a new option called [b]Language the Facebook controls are shown in[/b].  It's purpose is set the language of the Facebook controls used in each post that the user can see, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!
 
 [color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
-Under [b]Admin[/b] => [b]Modification Settings[/b], there is a new option called [b]Language the Facebook controls are shown in[/b].  It's purpose is to define the forum's default language for the Facebook post, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!
+Under [b]Admin[/b] => [b]Modification Settings[/b], there are some new options:
+o [b]Language the Facebook controls are shown in[/b].  It's purpose is to define the forum's default language for the Facebook post, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!
+o [b]Default width of embedded Facebook video[/b]
+o [b]Default height of embedded Facebook video[/b]
+o [b]Include Facebook link beneath?[/b]
 
 [color=blue][b][size=12pt][u]Further Information[/u][/size][/b][/color]
 o [url=https://developers.facebook.com/docs/plugins/embedded-posts]Facebook Embedded Posts[/url], specifically [b]Getting a posts's URL[/b]

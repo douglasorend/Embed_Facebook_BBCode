@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:Facebook</id>
+<name>Embed Facebook BBCode</name>
+<version>3.6</version>
+
+<file name="$languagedir/index.turkish.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['fb_default_lang'] = 'Facebook kontrollerinde kullanilacak dil secenegi:';
+$txt['fb_default_video_width'] = 'Facebook videolar icin varsayilan genislik degeri:';
+$txt['fb_default_post_width'] = 'Facebook iletiler icin varsayilan genislik degeri:';
+$txt['fb_include_link'] = 'Altinda Facebook baglantisi ekleyin?';
+$txt['fb_invalid'] = '[ Gecersiz Facebook Linki ]';
+]]></add>
+	</operation>
+</file>
+</modification>

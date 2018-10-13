@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>3.5</version>
+<version>3.6</version>
 
 <file name="$sourcedir/Post.php">
 	<operation>
@@ -50,6 +50,15 @@
 	// Code for showing and hiding additional options.]]></search>
 		<add><![CDATA[	FB.XFBML.parse(document.getElementById(\'preview_body\'));
 			]]></add>
+	</operation>
+</file>
+<file name="$boarddir/mobiquo/include/Subs.php" error="skip">
+	<operation>
+		<search position="after"><![CDATA[// The non-breaking-space looks a bit different each time.]]></search>
+		<add><![CDATA[// Embed Facebook URLs in the facebook bbcode tags:
+	BBCode_Facebook_Embed($message, $smileys, $cache_id, $parse_tags);
+
+	]]></add>
 	</operation>
 </file>
 </modification>

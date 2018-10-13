@@ -1,3 +1,8 @@
+v3.6 - November 27th, 2017
+o Added Turkish translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=351405]mkucuksari[/url]!
+o Added Tapatalk support so that any Facebook links show up as clickable links.
+o Added option to show the Facebook URL after the Facebook post/video/photo/etc.
+
 v3.5 - November 22th, 2017
 o Altered regex patterns to accept [b]/photo/[/b] URLs properly.
 
