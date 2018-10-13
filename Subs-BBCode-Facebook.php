@@ -90,57 +90,46 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 {
 	global $modSettings, $txt;
 	
-	$width = ($tag['content'] == 'auto' ? 'auto' : (int) $tag['content']);
-	$tag['content'] = $data;
-	//$tag['content'] = $txt['fb_invalid'];
+	// Set up for a run through the bbcode:
+	$tag['content'] = $txt['fb_invalid'];
 	if (empty($data))
 		return;
 	$data = strtr(trim($data), array('<br />' => ''));
 	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 		$data = 'http://' . $data;
 		
-	// Avoid this whole section if we are running from the Tapatalk mod:
-	if (defined('IN_MOBIQUO'))
-		$tag['content'] = '<a href="' . $data . '">' . $data . '</a>';
+	// Determine approprate width for Facebook display:
+	$def_width = ($tag['content'] == 'auto' ? 'auto' : (int) $tag['content']);
+	$vid_width = (empty($def_width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $def_width);
+	$pst_width = (empty($def_width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $def_width);
+
 	// Is this a Facebook post URL?
-	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\w\.\_]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_post_width']) ? $modSettings['fb_default_post_width'] : $width);
-		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($width) ? $width : 'auto') . '"></div>';
-	}
+	if (preg_match('#(https?):\/\/(|(.+?).)facebook.com/[\w\.\_]+/posts/(\d+)(\?(.+?=(\d)(|amp))+?)?#i', $data, $parts))
+		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($pst_width) ? $pst_width : 'auto') . '"></div>';
 	// ---OR--- Is this a regular Facebook permalink URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/permalink.php\?(story_fbid=(\d+))?(&amp;)?(id=(\d+))?#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
-		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($width) ? $width : 'auto') . ' data-allowfullscreen="true"></div>';
-	}
+		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($vid_width) ? $vid_width : 'auto') . ' data-allowfullscreen="true"></div>';
 	// ---OR--- Is this a Facebook video URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\w\.\_]+/videos/|video.php\?v=)(\d+)#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
-		$tag['content'] = '<div class="fb-video" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '" data-width="' . (!empty($width) ? $width : 'auto') . '" data-allowfullscreen="true"></div>';
-	}
+		$tag['content'] = '<div class="fb-video" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '" data-width="' . (!empty($vid_width) ? $vid_width : 'auto') . '" data-allowfullscreen="true"></div>';
 	// ---OR--- Is this a Facebook photo URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
-		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
-	}
+		$tag['content'] = '<div' . (!empty($vid_width) ? ' width="' . $vid_width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
 	// ---OR--- Is this a Facebook photo URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/([\d\w\.\_]+)/photos/(\w)+\.(\d+)(?:\.(\d+)\.(\d+))?/(\d+)/\?type=(\d+)(?:&amp;theater)?#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
-		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
-	}
+		$tag['content'] = '<div' . (!empty($vid_width) ? ' width="' . $vid_width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
 	// ---OR--- Is this a Facebook event permalink URL?
 	elseif (preg_match('#(https?):\/\/(|(.+?).)facebook.com/events/(\d+)/permalink/(\d+)#i', $data, $parts))
-	{
-		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
-		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($width) ? $width : 'auto') . '"></div>';
-	}
+		$tag['content'] = '<div class="fb-post" data-href="' . $data . '" data-width="' . (!empty($vid_width) ? $vid_width : 'auto') . '"></div>';
+	// [[ LAST CASE ]]=> If no valid FaceBook URL, then return to caller:
+	else
+		return;
 
-	// Include the Facebook link if we are running the Tapatalk mod or user demands it:
-	if (!defined('IN_MOBIQUO') && !empty($modSettings['fb_include_link']))
+	// Are we running Tapatalk?  If so, return ONLY the link!!!
+	if (defined('IN_MOBIQUO'))
+		$tag['content'] = '<a href="' . $data . '">' . $data . '</a>';
+	// Otherwise, add the Facebook URL if admin says so:
+	elseif (!empty($modSettings['fb_include_link']))
 		$tag['content'] .= '<br /><a href="' . $data . '">' . $data . '</a>';
 }
 

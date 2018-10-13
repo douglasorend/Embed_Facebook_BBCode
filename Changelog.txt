@@ -1,3 +1,7 @@
+v3.7 - November 29th, 2017
+o Revised Tapatalk support to return Facebook URL only if we can match a pattern.
+o Streamlined some code in the bbcode validation function.
+
 v3.6 - November 27th, 2017
 o Added Turkish translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=351405]mkucuksari[/url]!
 o Added Tapatalk support so that any Facebook links show up as clickable links.
