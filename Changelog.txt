@@ -1,3 +1,6 @@
+v2.6 - August 29th, 2015
+o Fixed missing CSS file operations within package-info.xml
+
 v2.5 - August 26th, 2015
 o Fixed issue with auto-embedding code that created double bbcode tags around Facebook URLs.
 
