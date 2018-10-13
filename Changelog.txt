@@ -1,3 +1,7 @@
+v3.11 - October 13th, 2018
+o No functionality change.
+o Updated documentation to point to new website.
+
 v3.10 - April 21st, 2018
 o Made a few changes to the HTML header code, as suggested by [url=https://www.simplemachines.org/community/index.php?action=profile;u=590011]UMH[/url].
 o Moved certain installer code from [b]add_remove_hooks.php[/b] to main source file.
