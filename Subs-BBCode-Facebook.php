@@ -96,6 +96,12 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
 		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-video" data-allowfullscreen="true" data-href="https://www.facebook.com/video.php?v=' . $parts[5] . '"></div>';
 	}
+	// ---OR--- Is this a Facebook photo URL?
+	elseif (preg_match('#(http|https):\/\/(|(.+?).)facebook.com/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)#i', $data, $parts))
+	{
+		$width = (empty($width) && !empty($modSettings['fb_default_video_width']) ? $modSettings['fb_default_video_width'] : $width);
+		$tag['content'] = '<div' . (!empty($width) ? ' width="' . $width . '"' : '') . ' class="fb-post" data-allowfullscreen="true" data-href="' . $data . '"></div>';
+	}
 }
 
 function BBCode_Facebook_Settings(&$config_vars)
@@ -182,7 +188,9 @@ function BBCode_Facebook_Profile(&$profile_fields)
 
 function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)?(|www\.)facebook.com\/(?:[\w]+?/posts/|.+?/videos/|videos.php\?v=)(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/(?:[\w]+?/posts/|.+?/videos/|videos.php\?v=)(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(|www\.)facebook.com\/photo.php\?fbid=(\d+)&amp;set=(.+?)&amp;type=(\d+)+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[facebook]$0[/facebook]', $message);
 	$pattern = '~\[facebook\](https?\:\/\/)?(|www\.)\[facebook\](.+?)\[/facebook\]\[/facebook\]~';
 	$message = preg_replace($pattern, '[facebook]$1$2$3[/facebook]', $message);

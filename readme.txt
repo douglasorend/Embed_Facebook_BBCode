@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v2.17[/b][/size][/color]
+[center][color=red][size=16pt][b]EMBED FACEBOOK BBCODE v2.18[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4062]Link to Mod[/url]
 [/center]
 [hr]
@@ -12,7 +12,7 @@ The BBCode takes these forms:
 [facebook]{facebook URL}[/facebook]
 [facebook width={x}]{facebook URL}[/facebook]
 [/code]
-where [b]{facebook URL}[/b] is the URL to the facebook post or video that you want to display and [b]{x}[/b] is the width of the post desired.  Note that if the width isn't specified, the global setting will be applied.
+where [b]{facebook URL}[/b] is the URL to the facebook photo post, post or video that you want to display and [b]{x}[/b] is the width of the post desired.  Note that if the width isn't specified, the global setting will be applied.
 
 [color=blue][b][size=12pt][u]User Profile Settings[/u][/size][/b][/color]
 Under [b]Profile[/b] => [b]Look and Layout[/b], there is a new option called [b]Language the Facebook controls are shown in[/b].  It's purpose is set the language of the Facebook controls used in each post that the user can see, which is overridden by Facebook when the user is already logged in.  Please note that setting this option only controls the default language of the FB controls, not the posts themselves, and does [b]NOT[/b] translate the posts into a different language!

@@ -1,3 +1,7 @@
+v2.18 - December 21th, 2015
+o Added support for Facebook photos as posts
+o Added auto-embed support for Facebook photo posts
+
 v2.17 - December 11th, 2015
 o Another fix for the auto-embed code so that all facebook URLs get embedded properly.
 
