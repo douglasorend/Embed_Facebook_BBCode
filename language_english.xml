@@ -3,13 +3,13 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Facebook</id>
 <name>Embed Facebook BBCode</name>
-<version>1.1</version>
+<version>2.0</version>
 
-<file name="$languagedir/ManageSettings.english.php">
+<file name="$languagedir/index.english.php">
 	<operation>
-		<search position="before"><![CDATA[$txt['languages_ltr'] = 'Right to Left';]]></search>
+		<search position="end" />
 		<add><![CDATA[
-$txt['fb_default_lang'] = 'Facebook Default Language:';]]></add>
+$txt['fb_default_lang'] = 'Language the Facebook controls are shown in:';]]></add>
 	</operation>
 </file>
 </modification>

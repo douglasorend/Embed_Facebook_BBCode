@@ -1,5 +1,11 @@
+v2.0 - August 14th, 2015
+o Added user setting under [b]Profile[/b] => [b]Look and Layout[/b] to override global forum setting.
+o BBCode "lang" parameter is now completely ignored, as user and forum settings are now used instead.
+o Facebook script inclusion moved from post area to HTML head area.
+o Removed Greek UTF8 language modification, citing new string better describing the purpose.
+
 v1.1 - August 8th, 2015
-o Added Greek UTF8 language string modification to the mod.
+o Added Greek UTF8 language modification to the mod.
 o Added additional validation to make sure the bbcode isn't abused.
 
 v1.0.2 - July 11th, 2015

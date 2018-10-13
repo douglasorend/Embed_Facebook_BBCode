@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:Facebook</id>
+<name>Embed Facebook BBCode</name>
+<version>2.0</version>
+
+<file name="$sourcedir/Load.php">
+	<operation>
+		<search position="before"><![CDATA[global $cookiename, $user_info, $language]]></search>
+		<add><![CDATA[, $txt]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[// Just build this here, it makes it easier to change/use - administrators can see all boards.]]></search>
+		<add><![CDATA[// FACEBOOK BBCODE: Include the language setting in the $userinfo array....
+	loadLanguage('index');
+	$user_info['facebook_lang'] = (isset($user_settings['facebook_lang']) ? $user_settings['facebook_lang'] : false);
+
+	]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/Profile-Modify.php">
+	<operation>
+		<search position="after"><![CDATA[			'theme_settings',]]></search>
+		<add><![CDATA[			'facebook_lang', 'hr',
+]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[		'ignore_boards',]]></search>
+		<add><![CDATA[
+		'facebook_lang',]]></add>
+	</operation>
+</file>
+</modification>

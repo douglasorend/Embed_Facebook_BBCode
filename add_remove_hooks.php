@@ -21,9 +21,12 @@ if (SMF == 'SSI')
 // Define the hooks
 $hook_functions = array(
 	'integrate_pre_include' => '$sourcedir/Subs-BBCode-Facebook.php',
+	'integrate_load_theme' => 'BBCode_Facebook_Theme',
 	'integrate_bbc_codes' => 'BBCode_Facebook',
 	'integrate_bbc_buttons' => 'BBCode_Facebook_Button',
 	'integrate_general_mod_settings' => 'BBCode_Facebook_Settings',
+// SMF 2.1+ Hooks below this line:
+	'integrate_load_profile_fields' => 'BBCode_Facebook_Profile',
 );
 
 // Adding or removing them?
