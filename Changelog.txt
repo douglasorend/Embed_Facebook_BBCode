@@ -1,3 +1,8 @@
+v3.10 - April 21st, 2018
+o Made a few changes to the HTML header code, as suggested by [url=https://www.simplemachines.org/community/index.php?action=profile;u=590011]UMH[/url].
+o Moved certain installer code from [b]add_remove_hooks.php[/b] to main source file.
+o Added package redirect to invoke previously mentioned installer code.
+
 v3.9 - March 4th, 2018
 o Fixed an issue that prevents BBC manager from showing bbcodes.
 

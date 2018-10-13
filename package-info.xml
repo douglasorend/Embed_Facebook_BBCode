@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Facebook</id>
 	<name>Embed Facebook BBCode</name>
 	<type>modification</type>
-	<version>3.9</version>
+	<version>3.10</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -21,6 +21,7 @@
 		<modification>language_turkish-utf8.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
 		<require-file name="facebook.gif" destination="$imagesdir/bbc" />
+		<redirect timeout="5000" url="?action=admin;area=fb_runonce" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
 		<code>add_remove_hooks.php</code>
@@ -50,6 +51,7 @@
 		<modification>language_turkish-utf8.xml</modification>
 		<require-file name="Subs-BBCode-Facebook.php" destination="$sourcedir" />
 		<require-file name="facebook.png" destination="$imagesdir/bbc" />
+		<redirect timeout="5000" url="?action=admin;area=fb_runonce" />
 	</install>
 	<uninstall for="2.1 Beta 1">
 		<code>add_remove_hooks.php</code>

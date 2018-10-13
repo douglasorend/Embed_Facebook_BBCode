@@ -25,6 +25,7 @@ $hook_functions = array(
 	'integrate_bbc_codes' => 'BBCode_Facebook',
 	'integrate_bbc_buttons' => 'BBCode_Facebook_Button',
 	'integrate_general_mod_settings' => 'BBCode_Facebook_Settings',
+	'integrate_admin_areas' => 'BBCode_Facebook_Admin',
 // SMF 2.1+ Hooks below this line:
 	'integrate_load_profile_fields' => 'BBCode_Facebook_Profile',
 	'integrate_pre_parsebbc' => 'BBCode_Facebook_Embed',
@@ -39,16 +40,6 @@ else
 // Do the deed
 foreach ($hook_functions as $hook => $function)
 	$call($hook, $function);
-
-// Let's attempt to insert the correct language for the default Facebook language:
-global $modSettings;
-if (!function_exists('BBCode_Facebook_Settings'))
-	require_once(dirname(__FILE__) . '/Subs-BBCode-Facebook.php');
-$dummy_vars = array();
-BBCode_Facebook_Settings($dummy_vars);
-$temp = $modSettings['fb_default_lang'];
-unset($modSettings['fb_default_lang']);
-updateSettings(array('fb_default_lang' => $temp));
 
 if (SMF == 'SSI')
    echo 'Congratulations! You have successfully installed this mod!';

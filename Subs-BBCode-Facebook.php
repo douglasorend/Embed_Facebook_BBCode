@@ -33,7 +33,7 @@ function BBCode_Facebook_Theme()
 
 	// Add the headers we need for the forum:
 	$context['html_headers'] .= '
-	<script>
+	<script type="text/javascript">
 		window.fbAsyncInit = function() {
 			FB.init();
 		};
@@ -42,7 +42,7 @@ function BBCode_Facebook_Theme()
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) {return;}
 			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/' . $user_info['facebook_lang'] . '/sdk.js#xfbml=1&version=v2.3";
+			js.src = "https://connect.facebook.net/' . $user_info['facebook_lang'] . '/sdk.js#xfbml=1&amp;version=v2.3";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, "script", "facebook-jssdk"));
 	</script>';
@@ -158,7 +158,7 @@ function BBCode_Facebook_Get_Languages(&$langs, &$config_vars)
 
 	$langs = array();
 	require_once($sourcedir . '/Subs-Package.php');
-	$search_results = fetch_web_data('http://www.facebook.com/translations/FacebookLocales.xml');
+	$search_results = fetch_web_data('https://www.facebook.com/translations/FacebookLocales.xml');
 	$pattern = '~<\?xml version=(.+?)>*(<locales>.+?</locales>)~is';
 	if (!$search_results || preg_match($pattern, $search_results, $matches) != true)
 		return BBCode_Facebook_No_List($config_vars);
@@ -236,6 +236,31 @@ function BBCode_Facebook_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 	$message = preg_replace($pattern, $replace, $message);
 	if (strpos($cache_id, 'sig') !== false)
 		$message = preg_replace('#\[facebook.*\](.*)\[\/facebook\]#i', '[url]$1[/url]', $message);
+}
+
+function BBCode_Facebook_Admin(&$admin_areas)
+{
+	$admin_areas['maintenance']['areas']['fb_runonce'] = array(
+		'label' => 'Facebook RunOnce',
+		'file' => 'Subs-BBCode-Facebook.php',
+		'function' => 'BBCode_Facebook_After_Install',
+		'select' => 'maintain',
+		'hidden' => true,
+	);
+}
+
+function BBCode_Facebook_After_Install()
+{
+	global $modSettings;
+
+	// Attempt to set default facebook language:
+	$dummy_vars = array();
+	$old = $modSettings['fb_default_lang'];
+	BBCode_Facebook_Settings($dummy_vars);
+	$temp = $modSettings['fb_default_lang'];
+	$modSettings['fb_default_lang'] = $old;
+	updateSettings(array('fb_default_lang' => $temp));
+	redirectExit('action=admin;area=modsettings');
 }
 
 ?>
