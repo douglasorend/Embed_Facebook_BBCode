@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:Facebook</id>
+<name>Embed Facebook BBCode</name>
+<version>3.3</version>
+
+<file name="$languagedir/index.spanish_latin-utf8.php" error="skip" >
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['fb_default_lang'] = 'El lenguaje de los controles de Facebook se muestran en:';
+$txt['fb_default_video_width'] = 'Ancho predeterminado del vídeo embebido de Facebook:';
+$txt['fb_default_post_width'] = 'Ancho predeterminado del vídeo embebido en el tema de Facebook:';
+$txt['fb_invalid'] = '[ URL no válida de Facebook ]';
+]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/index.spanish_latin.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['fb_default_lang'] = 'El lenguaje de los controles de Facebook se muestran en:';
+$txt['fb_default_video_width'] = 'Ancho predeterminado del v&iacute;deo embebido de Facebook:';
+$txt['fb_default_post_width'] = 'Ancho predeterminado del v&iacute;deo embebido en el tema/mensaje:';
+$txt['fb_invalid'] = '[ URL no v&aacute;lida de Facebook ]';
+]]></add>
+	</operation>
+</file>
+</modification>

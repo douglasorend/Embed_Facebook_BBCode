@@ -1,3 +1,8 @@
+v3.3 - June 18th, 2016
+o Added Spanish Latin translation, courtsey of [url=http://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url].
+o Fixed code so that the Facebook [b]permalink.php[/b] URL is recognized as valid.
+o Fixed auto-embed code so that the Facebook [b]permalink.php[/b] URL is recognized as valid.
+
 v3.2 - March 7th, 2016
 o Modified auto-embed code so that Facebook URLs in signature are embedded as [b][nobbc][url]{link}[/url][/nobbc][/b].
 
