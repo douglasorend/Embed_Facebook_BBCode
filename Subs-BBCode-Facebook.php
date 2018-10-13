@@ -72,10 +72,10 @@ function BBCode_Facebook_Button(&$buttons)
 
 function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 {
-	global $modSettings;
+	global $modSettings, $txt;
 	
 	$width = (int) $tag['content'];
-	$tag['content'] = '';
+	$tag['content'] = $txt['fb_invalid'];
 	if (empty($data))
 		return;
 	$data = strtr(trim($data), array('<br />' => ''));
@@ -96,15 +96,10 @@ function BBCode_Facebook_Validate(&$tag, &$data, &$disabled)
 	}
 }
 
-
 function BBCode_Facebook_Embed(&$message)
 {
-	$pattern = '#(http|https)://(|(.+?).)facebook.com/(.+?)/posts/(\d+)(|((/|\?)(.+?)))#i';
-	$message = preg_replace($pattern, '[facebook]$1://$2facebook.com/$4/posts/$5$6[/facebook]', $message);
-	$pattern = '#(http|https)://(|(.+?).)facebook.com/(.+?/videos/|video.php\?v=)(\d+)(|((/|\?|\&)(.+?)))#i';
-	$message = preg_replace($pattern, '[facebook]$1://$2facebook.com/$4$5$6[/facebook]', $message);
-	$pattern = '#\[facebook(|.+?)\]\[facebook\](.+?)\[/facebook\]\[/facebook\]#i';
-	$message = preg_replace($pattern, '[facebook$1]$2[/facebook]', $message);
+	$pattern = '#(|\[facebook(|.+?)\](([<br />]+)?))(http|https):\/\/(|.+?)\.facebook\.com/(.+?/posts/|.+?/videos/|video.php\?v=)(\d+)(|((/|\?)(.+?)))(([<br />]+)?)(\[/facebook\]|)#i';
+	$message = preg_replace($pattern, '[facebook$2]$5://$6.facebook.com/$7$8$9$11[/facebook]$13', $message);
 	$pattern = '#\[code(|(.+?))\](|.+?)\[facebook(|.+?)\](.+?)\[/facebook\](|.+?)\[/code\]#i';
 	$message = preg_replace($pattern, '[code$1]$3$5$6[/code]', $message);
 }

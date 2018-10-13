@@ -1,3 +1,7 @@
+v2.9 - October 2nd, 2015
+o Rewrote auto-embedding code to deal with line-breaks and duplicate closing brackets.
+o Added "Invalid Facebook URL" message for use with invalid FB URLs (duh)....
+
 v2.8 - September 21st, 2015
 o Fixed auto-embedding issue where URLs inside code tags where auto-linked.
 
